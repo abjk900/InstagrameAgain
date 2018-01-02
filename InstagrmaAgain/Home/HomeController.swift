@@ -23,14 +23,31 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         //navigation title
         setupNavigationItems()
         
-        //bring "post"
-        fetchPosts()
+        //refreshingControl
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        collectionView?.refreshControl = refreshControl
         
-        //fetchfollowUserspost
-        fetchFollowingUserIds()
-        
+        //fetch all of posts
+        fetchAllPosts()
         
     }
+    
+    @objc func handleRefresh() {
+        print("Handling refresh")
+        //it goes to remove "unfollow" post
+        posts.removeAll()
+        fetchAllPosts()
+    }
+    
+    fileprivate func fetchAllPosts() {
+        print("Handling refresh")
+        //fetch currently user posts
+        fetchPosts()
+        //fetch following user posts
+        fetchFollowingUserIds()
+    }
+    
     
     fileprivate func fetchFollowingUserIds() {
         guard let uid = Auth.auth().currentUser?.uid else {return}
@@ -64,6 +81,9 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         let ref = Database.database().reference().child("posts").child(user.uid)
         ref.observeSingleEvent(of: .value, with: {(snapshot) in
+            //왜 여기다 할까? post 를 add 한 다음에 하지 않고. 이유는 이미 처음에 한번 fetchAllPosts() 를 했고 refresing 으로 한번 더 돌려서 fetchAllPosts() 할 때 reloadDate 후에 한다면 한번 더 중복되서 붙여진다. 여기서 멈춰야 중복되서 붙여지지 않는다.
+            self.collectionView?.refreshControl?.endRefreshing()
+            
             //bring
             guard let dictionaries = snapshot.value as? [String : Any] else {return}
             
@@ -81,6 +101,9 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             })
             
             self.collectionView?.reloadData()
+            
+            //****여기서 멈추면 포스트가 한번씩 중복해서 더 붙여진다.****
+//          self.collectionView?.refreshControl?.endRefreshing()
             
         }) { (err) in
             print("Failed to fetch posts", err)
