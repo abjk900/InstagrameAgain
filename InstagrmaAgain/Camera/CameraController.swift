@@ -35,6 +35,14 @@ class CameraController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //must be first layer then add the buttons otherwise the buttons were hided.
+        setupCaptureSession()
+        //buttons
+        setupHUD()
+        
+    }
+    
+    fileprivate func setupHUD() {
         
         view.addSubview(capturePhotoButton)
         capturePhotoButton.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 24, paddingRight: 0, width: 80, height: 80)
@@ -42,9 +50,6 @@ class CameraController: UIViewController {
         
         view.addSubview(dismissButton)
         dismissButton.anchor(top: view.topAnchor, left: nil, bottom: nil, right: view.rightAnchor, paddingTop: 12, paddingLeft: 0, paddingBottom: 0, paddingRight: 12, width: 50, height: 50)
-        
-        setupCaptureSession()
-        
     }
     
     fileprivate func setupCaptureSession() {
