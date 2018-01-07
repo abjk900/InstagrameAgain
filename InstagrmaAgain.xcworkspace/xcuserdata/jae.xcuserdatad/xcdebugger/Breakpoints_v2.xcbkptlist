@@ -58,12 +58,12 @@
                   moduleName = "InstagrmaAgain"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jae/Desktop/fun/IOS%20activity/InstagramAgain/InstagrmaAgain/InstagrmaAgain/UserProfile/UserProfileHeader.swift"
-                  timestampString = "536825625.669498"
+                  timestampString = "536994080.393595"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "95"
                   endingLineNumber = "95"
-                  offsetFromSymbolStart = "3645">
+                  offsetFromSymbolStart = "2880">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -73,12 +73,12 @@
                   moduleName = "InstagrmaAgain"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jae/Desktop/fun/IOS%20activity/InstagramAgain/InstagrmaAgain/InstagrmaAgain/UserProfile/UserProfileHeader.swift"
-                  timestampString = "536825625.673628"
+                  timestampString = "536994080.395105"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "95"
                   endingLineNumber = "95"
-                  offsetFromSymbolStart = "2176">
+                  offsetFromSymbolStart = "1756">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -106,12 +106,12 @@
                   moduleName = "InstagrmaAgain"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jae/Desktop/fun/IOS%20activity/InstagramAgain/InstagrmaAgain/InstagrmaAgain/UserProfile/UserProfileHeader.swift"
-                  timestampString = "536825625.680559"
+                  timestampString = "536994080.3985"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "90"
                   endingLineNumber = "90"
-                  offsetFromSymbolStart = "564">
+                  offsetFromSymbolStart = "408">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -121,12 +121,12 @@
                   moduleName = "InstagrmaAgain"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jae/Desktop/fun/IOS%20activity/InstagramAgain/InstagrmaAgain/InstagrmaAgain/UserProfile/UserProfileHeader.swift"
-                  timestampString = "536825625.68219"
+                  timestampString = "536994080.400295"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "90"
                   endingLineNumber = "90"
-                  offsetFromSymbolStart = "4">
+                  offsetFromSymbolStart = "12">
                </Location>
             </Locations>
          </BreakpointContent>

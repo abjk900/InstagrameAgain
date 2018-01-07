@@ -10,6 +10,7 @@
 		190D99681FEBEDCB0045F76C /* UserSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190D99671FEBEDCB0045F76C /* UserSearchController.swift */; };
 		190D996A1FEBEDDE0045F76C /* UserSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190D99691FEBEDDE0045F76C /* UserSearchCell.swift */; };
 		190D997F1FEC8FDA0045F76C /* FirebaseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190D997E1FEC8FDA0045F76C /* FirebaseUtils.swift */; };
+		191CDFB72001BB49009382F3 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191CDFB62001BB49009382F3 /* CameraController.swift */; };
 		192007C51FD3C4ED00C14626 /* MainTapBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192007C41FD3C4ED00C14626 /* MainTapBarController.swift */; };
 		194FD0661FDFB77600D220D4 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194FD0651FDFB77600D220D4 /* CustomImageView.swift */; };
 		1956A3A31FD7E6B100C86AB5 /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1956A3A21FD7E6B100C86AB5 /* PhotoSelectorController.swift */; };
@@ -38,6 +39,7 @@
 		190D99671FEBEDCB0045F76C /* UserSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchController.swift; sourceTree = "<group>"; };
 		190D99691FEBEDDE0045F76C /* UserSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchCell.swift; sourceTree = "<group>"; };
 		190D997E1FEC8FDA0045F76C /* FirebaseUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUtils.swift; sourceTree = "<group>"; };
+		191CDFB62001BB49009382F3 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		192007C41FD3C4ED00C14626 /* MainTapBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTapBarController.swift; sourceTree = "<group>"; };
 		194FD0651FDFB77600D220D4 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		1956A3A21FD7E6B100C86AB5 /* PhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
@@ -87,6 +89,14 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		191CDFB52001BB10009382F3 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				191CDFB62001BB49009382F3 /* CameraController.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
 		19ACC1D81FD6ED4800E87EF0 /* AddPhoto */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +129,7 @@
 		19B91A0A1FD24928001900AE /* InstagrmaAgain */ = {
 			isa = PBXGroup;
 			children = (
+				191CDFB52001BB10009382F3 /* Camera */,
 				190D99661FEBEDB50045F76C /* Search */,
 				19BBC7151FE3C03E0040DDE6 /* Home */,
 				19EB58FC1FDE812400228537 /* Models */,
@@ -348,6 +359,7 @@
 				19B91A241FD2664E001900AE /* Extention.swift in Sources */,
 				19EB59001FDE852B00228537 /* UserProfilePhotoCell.swift in Sources */,
 				19BBC71B1FE427BA0040DDE6 /* User.swift in Sources */,
+				191CDFB72001BB49009382F3 /* CameraController.swift in Sources */,
 				1956A3A51FDA90C000C86AB5 /* PhotoSelectorHeader.swift in Sources */,
 				19B91A211FD26588001900AE /* LoginController.swift in Sources */,
 				19D449CE1FD4EBC400141064 /* UserProfileController.swift in Sources */,
@@ -497,6 +509,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XS77XABE92;
 				INFOPLIST_FILE = InstagrmaAgain/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "JK-L.InstagrmaAgain";
@@ -512,6 +525,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XS77XABE92;
 				INFOPLIST_FILE = InstagrmaAgain/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "JK-L.InstagrmaAgain";
