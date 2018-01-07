@@ -17,6 +17,9 @@ class CustomImageView: UIImageView {
         
         lastURLUsedToLoadImage = urlString
         
+        //하면 더 편하데 왠지는 설명 너무 부족
+        self.image = nil
+        
         //string url -> URL 로 변환
         guard let url = URL(string: urlString) else {return}
         

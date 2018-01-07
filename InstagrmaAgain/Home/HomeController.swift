@@ -22,6 +22,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         //navigation title
         setupNavigationItems()
+        //ca
         
         //refreshingControl
         let refreshControl = UIRefreshControl()
@@ -31,6 +32,13 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         //fetch all of posts
         fetchAllPosts()
         
+        //AddPhoto 에서 변경된 것을 가져온다(텔레비젼)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: NSNotification.Name(rawValue: "UpdateFeed"), object: nil)
+        
+    }
+    
+    @objc func handleUpdateFeed() {
+        handleRefresh()
     }
     
     @objc func handleRefresh() {
@@ -83,7 +91,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         ref.observeSingleEvent(of: .value, with: {(snapshot) in
             //왜 여기다 할까? post 를 add 한 다음에 하지 않고. 이유는 이미 처음에 한번 fetchAllPosts() 를 했고 refresing 으로 한번 더 돌려서 fetchAllPosts() 할 때 reloadDate 후에 한다면 한번 더 중복되서 붙여진다. 여기서 멈춰야 중복되서 붙여지지 않는다.
             self.collectionView?.refreshControl?.endRefreshing()
-            
             //bring
             guard let dictionaries = snapshot.value as? [String : Any] else {return}
             
@@ -108,6 +115,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         }) { (err) in
             print("Failed to fetch posts", err)
         }
+        
     }
     
     //Navigation title
@@ -136,7 +144,12 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! HomePostCell
         
-        cell.post = posts[indexPath.item]
+        //err solve when post.removeall and clush err
+        
+        if indexPath.item < posts.count - 1 {
+            cell.post = posts[indexPath.item]
+        }
+        
         
         return cell
     }

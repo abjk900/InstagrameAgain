@@ -103,6 +103,9 @@ class SharePhotoController: UIViewController {
             
             print("Suceesfully saved post to DB")
             self.dismiss(animated: true, completion: nil)
+            
+            //변경된 사항을 보내준다(방송국)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UpdateFeed"), object: nil)
         }
     }
     

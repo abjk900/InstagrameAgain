@@ -169,6 +169,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
             self.collectionView?.reloadData()
             
             self.fetchOrderedPosts()
+            
         }
     }
     

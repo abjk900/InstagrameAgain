@@ -75,6 +75,7 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
         //1. searchigViewCell 에서 선택된 user.uid 를 ProfileController의 userId 에 저장시킨다.
         userProfileController.userId = user.uid
         navigationController?.pushViewController(userProfileController, animated: true)
+        
     }
     
     var filterdUsers = [User]()
@@ -89,7 +90,7 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
             guard let dictionaires = snapshot.value as? [String : Any] else {return}
             
             dictionaires.forEach({ (key, value) in
-                //의문점 이렇게 해서 모든 uid 가 차례대로 나열되는지..
+                
                 if key == Auth.auth().currentUser?.uid{
                     print("Found myself, omit from list")
                     return

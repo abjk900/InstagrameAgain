@@ -24,6 +24,7 @@ class UserProfileHeader: UICollectionViewCell {
             usernameLabel.text = user?.username
     
             setupEditFollowButton()
+            
         }
     }
     
@@ -65,16 +66,15 @@ class UserProfileHeader: UICollectionViewCell {
         
         if editProfileFollowButton.titleLabel?.text == "Unfollow"{
                 //unfollow
-            Database.database().reference().child("follwoing").child(currentLoggedInUserId).child(userId).removeValue(completionBlock: { (err, ref) in
+            Database.database().reference().child("following").child(currentLoggedInUserId).child(userId).removeValue(completionBlock: { (err, ref) in
                 if let err = err {
-                    print("Failed to unfoloow user", err)
+                    print("Failed to unfollow user", err)
                     return
                 }
                 
-                print("Successfully unfollowed user", self.user?.username ?? "")
+                print("Successfully unfollowed user:", self.user?.username ?? "")
                 
                 self.setupFollowStyle()
-
             })
             
         } else {
@@ -91,6 +91,7 @@ class UserProfileHeader: UICollectionViewCell {
                 self.editProfileFollowButton.setTitle("Unfollow", for: .normal)
                 self.editProfileFollowButton.backgroundColor = .white
                 self.editProfileFollowButton.setTitleColor(.black, for: .normal)
+                
             }
         }
     }
