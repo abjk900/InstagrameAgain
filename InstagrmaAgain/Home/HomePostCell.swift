@@ -7,8 +7,17 @@
 //
 
 import UIKit
+//define set of behavior, 프로토콜은 뭔가를 확장시켜서 대신 해주는것(?)
+
+//1.to make protocol
+protocol HomePostCellDelegate  {
+    func didTapComment(post : Post)
+}
 
 class HomePostCell: UICollectionViewCell {
+    
+    //2.to declare instance varable
+    var delegate : HomePostCellDelegate?
     
     var post : Post? {
         didSet {
@@ -61,11 +70,18 @@ class HomePostCell: UICollectionViewCell {
         return button
     }()
     
-    let commentButton : UIButton = {
+   lazy var commentButton : UIButton = {
        let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "comment").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handleComment), for: .touchUpInside)
         return button
     }()
+    
+    @objc func handleComment() {
+        print("handle Comment")
+        guard let post = post else {return}
+        delegate?.didTapComment(post : post)
+    }
     
     let sendMessageButton : UIButton = {
         let button = UIButton(type: .system)

@@ -43,9 +43,9 @@ class MainTapBarController: UITabBarController, UITabBarControllerDelegate {
                 let navController = UINavigationController(rootViewController: loginController)
                 self.present(navController, animated: true, completion: nil)
             }
-            
             return
         }
+        
         setUpViewController()
     }
     
@@ -88,9 +88,9 @@ class MainTapBarController: UITabBarController, UITabBarControllerDelegate {
 
     fileprivate func templateNavController(unselectedImage : UIImage, selectedImage : UIImage, rootViewController : UIViewController = UIViewController()) -> UINavigationController{
         
-        let viewController = rootViewController
+//        let viewController = rootViewController
         //굳이 viewController 를 안만들고 rootViewcontroller 를 연결해주는게 더 간편하지 않을까..
-        let navController = UINavigationController(rootViewController: viewController)
+        let navController = UINavigationController(rootViewController: rootViewController)
         navController.tabBarItem.image = unselectedImage
         navController.tabBarItem.selectedImage = selectedImage
         return navController

@@ -21,8 +21,8 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         
         collectionView?.backgroundColor = .white
         
-        //Navigation Title
-        navigationItem.title = Auth.auth().currentUser?.uid
+        //Fetch User
+        fetchUser()
         
         //forSuppleme ntaryView 보조 뷰로 프레임워크 되어인는듯 함
         //Header Cell
@@ -37,8 +37,6 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
 //        //Fetch data
 //        fetchOrderedPosts()
         
-        //Fetch User
-        fetchUser()
     }
     
     /*
@@ -53,6 +51,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         
         let ref = Database.database().reference().child("posts").child(uid)
         
+        //childeAdded 는 그전에 데이터베이스에 데이터를 올릴때 포스트폴더 - 유저유아이디 - 사진마다랜덤유아이디 넣었기 때문에 다시 뺄때도 childAdded 를 넣어줘야함.
         ref.queryOrdered(byChild: "creationDate").observe(.childAdded, with: {(snapshot) in
             guard let dictionary = snapshot.value as? [String : Any] else {return}
             // 같은 class 에 변수가 존재하더라도 함수 밖에 있는 변수를 사용하려면 변수를 함수 안에서 다시 패스 받아서 사용하여야 한다.

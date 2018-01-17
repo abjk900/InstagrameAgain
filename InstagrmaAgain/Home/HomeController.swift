@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout, HomePostCellDelegate {
     
     let cellId = "cellId"
     
@@ -22,7 +22,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         //navigation title
         setupNavigationItems()
-        //ca
         
         //refreshingControl
         let refreshControl = UIRefreshControl()
@@ -36,6 +35,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: NSNotification.Name(rawValue: "UpdateFeed"), object: nil)
         
     }
+    
     
     @objc func handleUpdateFeed() {
         handleRefresh()
@@ -160,8 +160,16 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             cell.post = posts[indexPath.item]
         }
         
+        cell.delegate = self
         
         return cell
+    }
+    
+    func didTapComment(post : Post){
+        print("Message coming from HomeController")
+        print(post.caption) 
+        let commentsController = CommentController(collectionViewLayout: UICollectionViewLayout())
+        navigationController?.pushViewController(commentsController, animated: true)
     }
     
 }

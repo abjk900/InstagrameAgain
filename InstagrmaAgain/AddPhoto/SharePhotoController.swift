@@ -58,7 +58,7 @@ class SharePhotoController: UIViewController {
     @objc func handleShare() {
         guard let caption = textView.text, caption.characters.count > 0 else {return}
         guard let image = selectedImage else {return}
-        
+
         guard let uploadData = UIImageJPEGRepresentation(image, 0.5) else {return}
         
         navigationItem.rightBarButtonItem?.isEnabled = false
@@ -104,7 +104,7 @@ class SharePhotoController: UIViewController {
             print("Suceesfully saved post to DB")
             self.dismiss(animated: true, completion: nil)
             
-            //변경된 사항을 보내준다(방송국)
+            //변경된 사항을 보내준다(방송국) - HomeConetoller와 연결되어 있다.
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UpdateFeed"), object: nil)
         }
     }

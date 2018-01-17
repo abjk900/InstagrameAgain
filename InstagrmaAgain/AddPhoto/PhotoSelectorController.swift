@@ -33,7 +33,6 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     }
     
     
-
     // Fetch Photos from cellPhone photolibrary
     var selectedImage : UIImage?
     var images = [UIImage]()
@@ -50,10 +49,12 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     fileprivate func fetchPhotos() {
         //사진들
         let allPhotos = PHAsset.fetchAssets(with: .image, options: assetFetchOption())
-        
+         
         DispatchQueue.global(qos: .background).async {
             allPhotos.enumerateObjects {(asset, count, stop) in
                 print(count)
+                
+                //예상컨데, 핸드폰에서 사진이 패치가 안되는것은 여기서 고치면 될 듯 함.
                 
                 //bringing image
                 let imageManager = PHImageManager.default()

@@ -85,7 +85,7 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
         print("Fetching users..")
         
         let ref = Database.database().reference().child("users")
-        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+        ref.observeSingleEvent(of: .value, with: {(snapshot) in
             
             guard let dictionaires = snapshot.value as? [String : Any] else {return}
             

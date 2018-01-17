@@ -28,7 +28,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        //예상, 수정된이미지, 원본이미지 두 번 다 클릭해서 사진이 바뀌어야 함으로 그냥 임으로 이프문과 이프엘스 문을 만들면 컴퓨터는 0,1 값등으로 받아드리므로 두 경우에 대해서 허용한다. 가독성 때문에 이렇게 이름을 정해 놓은듯 하다.
+        //예상, 수정된이미지, 원본이미지 두 번 다 클릭해서 사진이 바뀌어야 함으로 그냥 임의로 이프문과 이프엘스 문을 만들면 컴퓨터는 0,1 값등으로 받아드리므로 두 경우에 대해서 허용한다. 가독성 때문에 이렇게 이름을 정해 놓은듯 하다.
         if let editedImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
             plusPhotoButton.setImage(editedImage.withRenderingMode(.alwaysOriginal), for: .normal)
         } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
@@ -105,11 +105,11 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
     
     @objc func handleSignUp() {
         
-        //Making ID using blow things.
+        //Making ID using blow things. // guard let is helping maintain clarity in view controllers
         guard let email = emailTextField.text else {return}
         guard let username = usernameTextField.text else {return}
         guard let password = passwordTextField.text else {return}
-        
+    
         Auth.auth().createUser(withEmail: email, password: password) { (user, error : Error?) in
             
             if let err = error {
