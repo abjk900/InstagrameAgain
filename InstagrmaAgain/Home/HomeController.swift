@@ -97,7 +97,10 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             dictionaries.forEach({ (key, value) in
                 guard let dictionary = value as? [String : Any] else {return}
                 
-                let post = Post(user: user, dictionary: dictionary)
+                var post = Post(user: user, dictionary: dictionary)
+                //post 마다의 고유 코드 를 post 안에 id 로 넣어준다.
+                post.id = key
+                
                 //save at "Post" file
                 self.posts.append(post)
             })
@@ -160,16 +163,19 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             cell.post = posts[indexPath.item]
         }
         
-        cell.delegate = self
+        cell.delegate = self //?
         
         return cell
     }
     
     func didTapComment(post : Post){
         print("Message coming from HomeController")
-        print(post.caption) 
+        print(post.caption)
+        print(post.id)
         let commentsController = CommentController(collectionViewLayout: UICollectionViewLayout())
+        commentsController.post = post //본 페이지 에서 데이터를 Post에 보내줘도 본 페이지와 그 다음 페이지와 연결을 안해주면 데이터가 흘러가지 않는다.
         navigationController?.pushViewController(commentsController, animated: true)
+        
     }
     
 }
