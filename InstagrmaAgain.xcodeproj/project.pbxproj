@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1902E7A42015E2E500E153B9 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1902E7A32015E2E500E153B9 /* CommentCell.swift */; };
 		190D99681FEBEDCB0045F76C /* UserSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190D99671FEBEDCB0045F76C /* UserSearchController.swift */; };
 		190D996A1FEBEDDE0045F76C /* UserSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190D99691FEBEDDE0045F76C /* UserSearchCell.swift */; };
 		190D997F1FEC8FDA0045F76C /* FirebaseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190D997E1FEC8FDA0045F76C /* FirebaseUtils.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1902E7A32015E2E500E153B9 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		190D99671FEBEDCB0045F76C /* UserSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchController.swift; sourceTree = "<group>"; };
 		190D99691FEBEDDE0045F76C /* UserSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchCell.swift; sourceTree = "<group>"; };
 		190D997E1FEC8FDA0045F76C /* FirebaseUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUtils.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				19BBC7161FE3C0520040DDE6 /* HomeController.swift */,
 				19BBC7181FE3CDC00040DDE6 /* HomePostCell.swift */,
 				19212F352007632A00D08F70 /* CommentController.swift */,
+				1902E7A32015E2E500E153B9 /* CommentCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				191CDFB72001BB49009382F3 /* CameraController.swift in Sources */,
 				1956A3A51FDA90C000C86AB5 /* PhotoSelectorHeader.swift in Sources */,
 				19B91A211FD26588001900AE /* LoginController.swift in Sources */,
+				1902E7A42015E2E500E153B9 /* CommentCell.swift in Sources */,
 				19D449CE1FD4EBC400141064 /* UserProfileController.swift in Sources */,
 				19B91A0C1FD24928001900AE /* AppDelegate.swift in Sources */,
 				192007C51FD3C4ED00C14626 /* MainTapBarController.swift in Sources */,

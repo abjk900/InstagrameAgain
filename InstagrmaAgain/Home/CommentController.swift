@@ -9,16 +9,38 @@
 import UIKit
 import Firebase
 
-class CommentController: UICollectionViewController {
+class CommentController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     var post : Post?
+    let cellId = "cellId"
     
     override func viewDidLoad() {
-         super.viewDidLoad()
+        super.viewDidLoad()
+        
+        collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         
         navigationItem.title = "Comments"
-
+        
         collectionView?.backgroundColor = .red
+        
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width, height: 50)
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        
+        cell.backgroundColor = .yellow
+        
+        return cell
     }
     
         // 스와이프로 밑에레이블로 가다가 반쯤 가서 다시 놓았을때 다시 상태바가 생기는.
@@ -97,7 +119,7 @@ class CommentController: UICollectionViewController {
     override var canBecomeFirstResponder: Bool{
         return true
     }
-
+    
     
     
 }
