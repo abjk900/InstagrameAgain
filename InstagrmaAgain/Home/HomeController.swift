@@ -172,7 +172,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         print("Message coming from HomeController")
         print(post.caption)
         print(post.id)
-        let commentsController = CommentController(collectionViewLayout: UICollectionViewLayout())
+        let commentsController = CommentController(collectionViewLayout: UICollectionViewFlowLayout())
         commentsController.post = post //본 페이지 에서 데이터를 Post에 보내줘도 본 페이지와 그 다음 페이지와 연결을 안해주면 데이터가 흘러가지 않는다.
         navigationController?.pushViewController(commentsController, animated: true)
         
