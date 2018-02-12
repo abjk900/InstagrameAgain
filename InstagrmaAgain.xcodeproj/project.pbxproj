@@ -32,6 +32,7 @@
 		19BBC7171FE3C0520040DDE6 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19BBC7161FE3C0520040DDE6 /* HomeController.swift */; };
 		19BBC7191FE3CDC00040DDE6 /* HomePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19BBC7181FE3CDC00040DDE6 /* HomePostCell.swift */; };
 		19BBC71B1FE427BA0040DDE6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19BBC71A1FE427BA0040DDE6 /* User.swift */; };
+		19C6FE95201C43C7008AACDF /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C6FE94201C43C7008AACDF /* Comment.swift */; };
 		19D449CE1FD4EBC400141064 /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D449CD1FD4EBC400141064 /* UserProfileController.swift */; };
 		19D449D11FD4F27200141064 /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D449D01FD4F27200141064 /* UserProfileHeader.swift */; };
 		19EB58FB1FDE48FF00228537 /* SharePhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EB58FA1FDE48FF00228537 /* SharePhotoController.swift */; };
@@ -68,6 +69,7 @@
 		19BBC7161FE3C0520040DDE6 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		19BBC7181FE3CDC00040DDE6 /* HomePostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostCell.swift; sourceTree = "<group>"; };
 		19BBC71A1FE427BA0040DDE6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		19C6FE94201C43C7008AACDF /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		19D449CD1FD4EBC400141064 /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		19D449D01FD4F27200141064 /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
 		19EB58FA1FDE48FF00228537 /* SharePhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePhotoController.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 			children = (
 				19EB58FD1FDE813100228537 /* Post.swift */,
 				19BBC71A1FE427BA0040DDE6 /* User.swift */,
+				19C6FE94201C43C7008AACDF /* Comment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -390,6 +393,7 @@
 				19212F362007632A00D08F70 /* CommentController.swift in Sources */,
 				1956A3A71FDA980000C86AB5 /* PhotoSelectorCell.swift in Sources */,
 				190D99681FEBEDCB0045F76C /* UserSearchController.swift in Sources */,
+				19C6FE95201C43C7008AACDF /* Comment.swift in Sources */,
 				19BBC7171FE3C0520040DDE6 /* HomeController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

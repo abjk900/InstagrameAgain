@@ -12,6 +12,8 @@ import UIKit
 //1.to make protocol
 protocol HomePostCellDelegate  {
     func didTapComment(post : Post)
+    func didLike(for cell : HomePostCell)
+    
 }
 
 class HomePostCell: UICollectionViewCell {
@@ -23,6 +25,8 @@ class HomePostCell: UICollectionViewCell {
         didSet {
             guard let postImageUrl = post?.imageUrl else {return}
             
+            likeButton.setImage(post?.hasLiked == true ? #imageLiteral(resourceName: "like_selected").withRenderingMode(.alwaysOriginal) : #imageLiteral(resourceName: "like_unselected").withRenderingMode(.alwaysOriginal), for: .normal)
+            
             photoImageView.loadImage(urlString: postImageUrl)
             
             usernameLabel.text = post?.user.username
@@ -32,7 +36,6 @@ class HomePostCell: UICollectionViewCell {
             userProfileImageView.loadImage(urlString: profileImageUrl)
             
             setupAttributedCaption()
-
         }
     }
     
@@ -64,23 +67,33 @@ class HomePostCell: UICollectionViewCell {
         return button
     }()
     
-    let likeButton : UIButton = {
+    //if setting at let likeButton then it is not hit, need to change let -> lazy var
+    lazy var likeButton : UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "like_unselected").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handleLike), for: .touchUpInside)
         return button
+        
     }()
+    
+    @objc func handleLike() {
+        print("handling like from within cell")
+        delegate?.didLike(for: self)
+    }
     
    lazy var commentButton : UIButton = {
        let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "comment").withRenderingMode(.alwaysOriginal), for: .normal)
         button.addTarget(self, action: #selector(handleComment), for: .touchUpInside)
         return button
+    
     }()
     
     @objc func handleComment() {
         print("handle Comment")
         guard let post = post else {return}
         delegate?.didTapComment(post : post)
+        
     }
     
     let sendMessageButton : UIButton = {
@@ -103,7 +116,6 @@ class HomePostCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         addSubview(userProfileImageView)
         addSubview(usernameLabel)
         addSubview(optionButton)

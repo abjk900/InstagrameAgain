@@ -9,7 +9,19 @@
 import UIKit
 import Firebase
 
-class UserProfileController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class UserProfileController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UserProfileHeaderDelegate {
+    
+    var isGridView = true
+    
+    func didChangeToGridView() {
+        isGridView = true
+        collectionView?.reloadData()
+    }
+    
+    func didChnageToListView() {
+        isGridView = false
+        collectionView?.reloadData()
+    }
     
     let cellId = "cellId"
     
@@ -30,6 +42,9 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         
         //Cell
         collectionView?.register(UserProfilePhotoCell.self, forCellWithReuseIdentifier: cellId)
+        
+        //Cell for TableCell, 이곳에서는 이곳에서의 패치 포스트 사용하므로, 로그인한 유저에 대한 포스트만 가져올 수 있다.
+        collectionView?.register(HomePostCell.self, forCellWithReuseIdentifier: "homePostCellId")
         
         //Logout gear button
         setupLogOutButton()
@@ -113,12 +128,18 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UserProfilePhotoCell
+        if isGridView{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UserProfilePhotoCell
+            
+            //        cell.photoImageView
+            cell.post = posts[indexPath.item]
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homePostCellId", for: indexPath) as! HomePostCell
+            cell.post = posts[indexPath.item]
+            return cell
+        }
         
-        //        cell.photoImageView
-        cell.post = posts[indexPath.item]
-        
-        return cell
     }
     
     //cell 세로 나누는 줄 크기
@@ -131,8 +152,20 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (view.frame.width - 2) / 3
-        return CGSize(width: width, height: width)
+        
+        if isGridView{
+            let width = (view.frame.width - 2) / 3
+            return CGSize(width: width, height: width)
+        } else {
+            var height : CGFloat = 40 + 8 + 8 // userName and Profilepicture
+            height += view.frame.width //photo
+            height += 50 // icons
+            height += 60 // Username and caption and postTime
+            height += 20 // userProfileImage view extending
+            
+            return CGSize(width: view.frame.width, height: height)
+        }
+        
     }
     
     //Header
@@ -146,10 +179,14 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         
         header.user = self.user
         
+      //header delegate 에 이 메서드를 넣는다
+        header.delegate = self
+        
         //not correct
         //header.addSubView(UIImageView())
         
         return header
+        
     }
     
     //*1. 필요한 정보를 가져온다.
@@ -171,6 +208,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
             
         }
     }
+    
     
 }
 

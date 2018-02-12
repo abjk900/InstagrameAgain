@@ -50,6 +50,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
         tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
+        
         return tf
     }()
     
@@ -79,7 +80,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         
         if isFormValid {
             signUpButton.isEnabled = true
-            signUpButton.backgroundColor = UIColor.rgb(red: 17, green: 154, blue: 237)
+            signUpButton.backgroundColor = .mainBlue()
         } else {
             signUpButton.isEnabled = false
             signUpButton.backgroundColor = UIColor.rgb(red: 149, green: 204, blue: 244)
@@ -177,6 +178,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         
         button.addTarget(self, action: #selector(handleAlredayHaveAccount), for: .touchUpInside)
         
+        
         return button
     }()
     
@@ -197,6 +199,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         
         view.addSubview(alreadyHaveAccountButton)
         alreadyHaveAccountButton.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
+        
         
         setupInputFields()
     }

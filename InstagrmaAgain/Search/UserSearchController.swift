@@ -82,24 +82,25 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
     var users = [User]()
     
     fileprivate func fetchUsers() {
-        print("Fetching users..")
-        
+        //데이터 베이스에 유저까지 접근 그 안에 유아이디 값들이 나열 되어 있음
         let ref = Database.database().reference().child("users")
         ref.observeSingleEvent(of: .value, with: {(snapshot) in
-            
+            //나열되어 있는 유아디 값들을 저장할 변수를 선언
             guard let dictionaires = snapshot.value as? [String : Any] else {return}
-            
+            //딕셔너리 변수에, key = uids, value = 애니타입으로 딕셔너리로 되어있는 값들을 저장
             dictionaires.forEach({ (key, value) in
                 
                 if key == Auth.auth().currentUser?.uid{
                     print("Found myself, omit from list")
                     return
                 }
-                
+                //각 유아이디 안에 있는 키와 벨류를 저장하기 위해 딕셔너리로 변수를 선언
                 guard let userDictionary = value as? [String : Any] else {return}
                 
                 let user = User(uid: key, dictionary: userDictionary)
+                
                 self.users.append(user)
+                
             })
             
             //arranging username in order to alpabet

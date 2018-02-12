@@ -11,6 +11,7 @@ import Foundation
 struct Post {
     
     var id : String?
+    var hasLiked : Bool
     
     let imageUrl : String
     let caption : String
@@ -21,6 +22,7 @@ struct Post {
         self.imageUrl = dictionary["imageUrl"] as? String ?? ""
         self.caption = dictionary["caption"] as? String ?? ""
         self.user = user
+        self.hasLiked = false
         
         let secondFrom1970 = dictionary["creationDate"] as? Double ?? 0
         self.creationDate = Date(timeIntervalSince1970: secondFrom1970)

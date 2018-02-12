@@ -10,7 +10,14 @@
 import UIKit
 import Firebase
 
+protocol UserProfileHeaderDelegate {
+    func didChnageToListView()
+    func didChangeToGridView()
+}
+
 class UserProfileHeader: UICollectionViewCell {
+    
+    var delegate : UserProfileHeaderDelegate?
     
     //didSet을 해주면 값이 갱신될 때 마다 업데이트 시켜준다. 여기서는, user 안의 imageUrl 이 바뀔때마다 갱신해 주어 그걸 타고가서 imageUrl이 image 화 되도록 도와주는 것이다.
     var user : User?{
@@ -69,18 +76,34 @@ class UserProfileHeader: UICollectionViewCell {
         return iv
     }()
     
-    let gridButton : UIButton = {
+    lazy var gridButton : UIButton = {
        let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "grid"), for: .normal)
+        button.addTarget(self, action: #selector(handleChangeToGridView), for: .touchUpInside)
         return button
     }()
     
-    let listButton : UIButton = {
+    @objc func handleChangeToGridView() {
+        print("Changing to grid view")
+        gridButton.tintColor = .mainBlue()
+        listButton.tintColor = UIColor(white: 0, alpha: 0.2)
+        delegate?.didChangeToGridView()
+    }
+    
+    lazy var listButton : UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "list"), for: .normal)
         button.tintColor = UIColor(white: 0, alpha: 0.2)
+        button.addTarget(self, action: #selector(handleChangeToListView), for: .touchUpInside)
         return button
     }()
+    
+    @objc func handleChangeToListView() {
+        print("Changing to list view")
+        listButton.tintColor = .mainBlue()
+        gridButton.tintColor = UIColor(white: 0, alpha: 0.2)
+        delegate?.didChnageToListView()
+    }
     
     let bookmarkButton : UIButton = {
         let button = UIButton(type: .system)

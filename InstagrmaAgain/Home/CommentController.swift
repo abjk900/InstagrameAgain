@@ -17,28 +17,80 @@ class CommentController: UICollectionViewController, UICollectionViewDelegateFlo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
-        
         navigationItem.title = "Comments"
         
-        collectionView?.backgroundColor = .red
+        collectionView?.backgroundColor = .white
+        collectionView?.alwaysBounceVertical = true
+        //밖에 클릭하면 키보드 없어지는
+        collectionView?.keyboardDismissMode = .interactive
         
         
+        // 이 두개는, 커멘트를 입력학 창과 겹치지 않기위해 노란 컨테이너뷰와, 서브미트 공간을 띄어주고, 스클롤해도 겹치지 않게 스크롤뷰 사이즈를 조절한것 같은데, 업데이트 되면서 자동으로 되는듯 함.
+//        collectionView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: -50, right: 0)
+//        collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: -50, right: 0)
+        
+        collectionView?.register(CommentCell.self, forCellWithReuseIdentifier: cellId)
+        
+        fetchComment()
+        
+    }
+    
+    var comments = [Comment]()
+    
+    fileprivate func fetchComment() {
+        guard let postId = self.post?.id else {return}
+        
+        let ref = Database.database().reference().child("comments").child(postId)
+        ref.observe(.childAdded, with: { (snapshot) in
+            print(snapshot.value)
+            
+            guard let dictionary = snapshot.value as? [String : Any] else {return}
+            
+            guard let uid = dictionary["uid"] as? String else { return }
+            
+            Database.fetchUserWithUID(uid: uid, completion: { (user) in
+                
+                let userComment = Comment(user: user, dictionary: dictionary)
+                self.comments.append(userComment)
+                self.collectionView?.reloadData()
+                
+            })
+            
+        }) { (err) in
+            print("Fetch comment is err")
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 50)
+        //AutoLayOut of comment cell size
+        let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
+        
+        let dummyCell = CommentCell(frame: frame)
+        dummyCell.comment = comments[indexPath.item]
+        //Lays out the subviews immediately, if layout updates are pending.
+        dummyCell.layoutIfNeeded()
+        
+        let targetSize = CGSize(width: view.frame.width, height: 1000)
+        //Returns the size of the view that satisfies the constraints it holds.
+        let estimatedSize = dummyCell.systemLayoutSizeFitting(targetSize)
+        //x ~ y 의 범위 사이즈?
+        let height = max(40 + 8 + 8, estimatedSize.height)
+        return CGSize(width: view.frame.width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return comments.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! CommentCell
         
-        cell.backgroundColor = .yellow
+        cell.comment = self.comments[indexPath.item]
         
         return cell
     }
@@ -57,6 +109,8 @@ class CommentController: UICollectionViewController, UICollectionViewDelegateFlo
         
     }
     
+    //=============ContainerView========================
+    
    lazy var containerView : UIView = {
         let containerView = UIView()
         containerView.backgroundColor = .white
@@ -73,7 +127,12 @@ class CommentController: UICollectionViewController, UICollectionViewDelegateFlo
         
         containerView.addSubview(self.commentTextField)
         commentTextField.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: containerView.bottomAnchor, right: submitButton.leftAnchor, paddingTop: 0, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-        
+    
+        let lineSeparatorView = UIView()
+        lineSeparatorView.backgroundColor = UIColor.rgb(red: 230, green: 230, blue: 230)
+        containerView.addSubview(lineSeparatorView)
+        lineSeparatorView.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: nil, right: containerView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0.5)
+    
         return containerView
     }()
     
